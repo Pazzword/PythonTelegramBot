@@ -58,8 +58,7 @@ def download_youtube_video(video_url, output_path):
 
 @bot.message_handler(
     func=lambda message: message.content_type == "text"
-    and "youtube.com/watch?v=" or message.content_type == "text"
-    and "youtu.be/" in message.text
+    and ("youtube.com/watch?v=" in message.text or "youtu.be/" in message.text)
 )
 def handle_youtube_link(message):
     try:
@@ -93,11 +92,24 @@ def send_intro(message):
         bot.reply_to(message, intro_message)
 
 
-@bot.message_handler(commands=["start", "hello", "Anzor"])
+@bot.message_handler(commands=["strat", "hello", "Anzor"])
 def send_welcome(message):
     bot.reply_to(
         message,
         "Hello, I am a bot built by Anzor. Please provide a valid YouTube video link and I will reply with downloaded video back to you.",
+    )
+
+
+@bot.message_handler(commands=["Артур"])
+def echo_artur_message(message):
+    bot.reply_to(message, "Рекстон Артур, ты кто такой? Давай, до свидания!")
+
+
+@bot.message_handler(commands=["Леша"])
+def echo_aдуч_message(message):
+    bot.reply_to(
+        message,
+        "Лешкин картошкин! Когда уже пригласишь? Ответька пжлста! Только не тут это же бот как-никак!",
     )
 
 
