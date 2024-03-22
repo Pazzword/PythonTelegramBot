@@ -58,7 +58,8 @@ def download_youtube_video(video_url, output_path):
 
 @bot.message_handler(
     func=lambda message: message.content_type == "text"
-    and "youtube.com/watch?v=" in message.text
+    and "youtube.com/watch?v=" or message.content_type == "text"
+    and "youtu.be/" in message.text
 )
 def handle_youtube_link(message):
     try:
